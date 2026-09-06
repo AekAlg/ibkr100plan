@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ميزان | مساعد القرار الاستثماري</title>
+  <meta name="description" content="مساعد عربي لفهم توزيع المحفظة ومحاكاة الدخل والمخاطر في أسواق سنغافورة والولايات المتحدة.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <a class="brand" href="#top" aria-label="العودة إلى بداية ميزان">
+          <span class="brand-symbol">م</span>
+          <span><b>ميزان</b><small>قرارك الاستثماري أوضح</small></span>
+        </a>
+        <nav class="main-nav" aria-label="أقسام التطبيق">
+          <button class="nav-item is-active" data-view="decision">لوحة القرار</button>
+          <button class="nav-item" data-view="portfolio">المحفظة</button>
+          <button class="nav-item" data-view="simulate">المحاكاة</button>
+        </nav>
+        <div class="topbar-tools">
+          <span class="data-status"><i></i> نموذج تخطيطي</span>
+          <button class="icon-button" id="themeToggle" type="button" title="تبديل المظهر" aria-label="تبديل المظهر">◐</button>
+          <button class="mobile-menu" id="mobileMenu" type="button" aria-label="فتح القائمة" aria-expanded="false">☰</button>
+        </div>
+      </div>
+      <div class="mobile-nav" id="mobileNav">
+        <button class="nav-item is-active" data-view="decision">لوحة القرار</button>
+        <button class="nav-item" data-view="portfolio">المحفظة</button>
+        <button class="nav-item" data-view="simulate">المحاكاة</button>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="intro-band">
+        <div class="intro-copy">
+          <p class="kicker"><span class="live-dot"></span> مساحة قرار شخصية · 03 مارس 2025</p>
+          <h1>لا تطارد العائد.<br><em>افهم القرار.</em></h1>
+          <p>حوّل هدفك المالي إلى خطة مفهومة: كم تستثمر، ماذا تتوقع، وما الذي قد يغيّر رأيك قبل أن تضغط زر الشراء.</p>
+        </div>
+        <div class="intro-stamp">
+          <span>ميزان</span>
+          <strong>01</strong>
+          <small>تقييم أولي</small>
+        </div>
+      </section>
+
+      <section class="workspace container is-max-widescreen">
+        <div class="profile-ribbon">
+          <div><span class="ribbon-label">ملفك الحالي</span><strong id="profileSummary">مستثمر دخل متوازن</strong></div>
+          <div class="ribbon-meta"><span id="profileCapital">$100,000</span><small>رأس المال</small></div>
+          <div class="ribbon-meta"><span id="profileHorizon">10 سنوات</span><small>الأفق</small></div>
+          <button class="button is-small is-light" id="editProfile" type="button">تعديل الملف</button>
+        </div>
+
+        <div class="view-panel is-active" id="view-decision">
+          <div class="section-head"><div><p class="kicker">01 / لوحة القرار</p><h2>ماذا يعني هذا لك؟</h2></div><span class="last-updated">آخر حساب: الآن</span></div>
+          <div class="decision-layout">
+            <aside class="profile-card">
+              <div class="card-title"><span class="step-badge">A</span><div><h3>عرّف هدفك</h3><p>المحرك يبني اقتراحه من إجاباتك</p></div></div>
+              <div class="field"><label class="label" for="capital">رأس المال بالدولار</label><input class="input" id="capital" type="number" min="1000" step="1000" value="100000"></div>
+              <div class="field"><label class="label" for="goal">هدفك الأساسي</label><div class="select is-fullwidth"><select id="goal"><option value="income">دخل نقدي مستمر</option><option value="balanced">دخل ونمو معاً</option><option value="growth">نمو رأس المال</option></select></div></div>
+              <div class="field"><label class="label" for="risk">أقصى هبوط تستطيع تحمله</label><div class="select is-fullwidth"><select id="risk"><option value="low">10% تقريباً</option><option value="medium" selected>20% تقريباً</option><option value="high">30% أو أكثر</option></select></div></div>
+              <div class="field"><label class="label" for="horizon">مدة الاستثمار</label><div class="select is-fullwidth"><select id="horizon"><option value="5">5 سنوات</option><option value="10" selected>10 سنوات</option><option value="15">15 سنة</option></select></div></div>
+              <div class="field"><label class="label" for="tax">استقطاع التوزيعات الأمريكية</label><div class="control has-icons-right"><input class="input" id="tax" type="number" min="0" max="100" value="30"><span class="icon is-small is-right">%</span></div></div>
+              <button class="button is-primary is-fullwidth calculate-button" id="calculate" type="button">حدّث قراري <span>←</span></button>
+              <p class="form-note">هذا نموذج تعليمي، وليس توصية مالية شخصية.</p>
+            </aside>
+
+            <div class="decision-main">
+              <div class="decision-callout"><div class="callout-mark">✓</div><div><span class="callout-label">التقييم الأولي</span><h3 id="decisionTitle">محفظة دخل متوازنة</h3><p id="decisionText">يمكنك البدء بتوزيع متنوع على ثلاث دفعات، مع إبقاء أصول الدخل الأعلى ضمن حدود واضحة.</p></div><span class="confidence" id="confidence">78% ملاءمة</span></div>
+              <div class="metric-grid">
+                <article class="metric-card"><span>الدخل السنوي المتوقع</span><strong id="annualIncome">$6,739</strong><small id="annualRange">نطاق معقول: $5,700 – $7,500</small></article>
+                <article class="metric-card green"><span>العائد النقدي المرجح</span><strong id="yieldRate">6.74%</strong><small>قبل تغير أسعار الأصول</small></article>
+                <article class="metric-card dark"><span>هبوط سنة ضغط</span><strong id="drawdown">−20%</strong><small>تقدير محاكاة، ليس أسوأ احتمال</small></article>
+              </div>
+              <div class="decision-columns">
+                <div class="insight-card"><div class="insight-head"><h3>لماذا هذا الاقتراح؟</h3><span>قابل للمراجعة</span></div><ul id="reasonsList"></ul></div>
+                <div class="insight-card caution-card"><div class="insight-head"><h3>ما الذي قد يغيّر رأينا؟</h3><span>راقبها</span></div><ul id="risksList"></ul></div>
+              </div>
+              <div class="action-strip"><div><span>الخطوة المنطقية التالية</span><strong id="nextStep">راجع المحفظة المقترحة ثم اختبر سيناريو الضغط.</strong></div><button class="button is-dark" data-view-target="portfolio" type="button">افتح المحفظة <span>←</span></button></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="view-panel" id="view-portfolio">
+          <div class="section-head"><div><p class="kicker">02 / البناء المقترح</p><h2>محفظة لها وظيفة واضحة</h2></div><div class="legend"><span><i class="sgx"></i> سنغافورة 85%</span><span><i class="us"></i> الولايات المتحدة 15%</span></div></div>
+          <div class="portfolio-top"><div class="allocation-ring"><div><strong id="allocationYield">6.74%</strong><small>عائد نقدي</small></div></div><div class="portfolio-summary"><h3>التنويع قبل الإغراء</h3><p>لا يوجد أصل واحد يقرر مصير المحفظة. كل مركز هنا له وظيفة: تثبيت، تنويع، أو رفع الدخل ضمن حد معلوم.</p><div class="mini-stats"><span><b>8</b> أصول</span><span><b>3</b> دفعات</span><span><b>0%</b> Margin</span></div></div></div>
+          <div class="holdings-list" id="holdingsList"></div>
+        </div>
+
+        <div class="view-panel" id="view-simulate">
+          <div class="section-head"><div><p class="kicker">03 / غرفة الاختبار</p><h2>ماذا لو تغيّرت الفرضيات؟</h2></div><span class="last-updated">الأرقام تخطيطية</span></div>
+          <div class="sim-layout"><div class="sim-controls"><div class="card-title"><span class="step-badge">B</span><div><h3>غيّر البيئة</h3><p>اختبر ما لا تتمنى حدوثه</p></div></div><label class="range-label">نمو التوزيعات <output id="growthOutput">3%</output><input id="growth" type="range" min="-5" max="8" step="0.5" value="3"></label><label class="range-label">هبوط أسعار الأصول <output id="priceShockOutput">10%</output><input id="priceShock" type="range" min="0" max="40" step="5" value="10"></label><label class="range-label">خفض التوزيعات <output id="distributionCutOutput">10%</output><input id="distributionCut" type="range" min="0" max="40" step="5" value="10"></label><label class="range-label">تغير USD/SGD <output id="fxOutput">0%</output><input id="fx" type="range" min="-20" max="20" step="5" value="0"></label><div class="batch-box"><span>دخول على دفعات</span><div><b>40%</b><b>30%</b><b>30%</b></div><small>توزيع افتراضي يقلل مخاطرة التوقيت</small></div></div><div class="scenario-main"><div class="scenario-banner"><span class="scenario-icon">◎</span><div><span>النتيجة بعد تطبيق الفرضيات</span><strong id="scenarioLabel">سيناريو قابل للتحمل</strong></div><span class="scenario-grade" id="scenarioGrade">B</span></div><div class="scenario-metrics"><div><span>الدخل السنوي</span><strong id="scenarioIncome">$5,797</strong></div><div><span>القيمة السوقية الفورية</span><strong id="marketValue">$90,000</strong></div><div><span>العائد الكلي التقريبي</span><strong id="totalReturn">−4.2%</strong></div></div><div class="year-bars" id="yearBars" aria-label="توقع الدخل خلال خمس سنوات"></div><div class="scenario-foot"><span>القاعدة: لا تبنِ احتياجاتك على السيناريو المتفائل.</span><button class="button is-small is-light" id="resetScenario" type="button">إعادة الاختبار</button></div></div></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer-note"><div><strong>ميزان</strong><span>أداة تعليمية لفهم القرار، لا لتنفيذ الصفقات تلقائياً.</span></div><span>بيانات النموذج: 03 مارس 2025 · راجع الأرقام قبل أي قرار</span></footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
