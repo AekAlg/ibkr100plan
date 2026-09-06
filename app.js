@@ -65,15 +65,51 @@ async function loadPlan() {
     if (!response.ok) throw new Error('تعذر تحميل الملف');
     const markdown = await response.text();
     $('markdownContent').innerHTML = marked.parse(markdown);
-    $('markdownStatus').textContent = 'المصدر: plan.md · عرض القراءة فقط · آخر تحديث 06 سبتمبر 2026';
+    buildPlanAccordion();
+    $('markdownStatus').textContent = 'عرض القراءة فقط · تاريخ الوثيقة: 3 مارس 2025';
   } catch (error) {
     $('markdownStatus').textContent = 'تعذر تحميل plan.md. شغّل الصفحة عبر خادم محلي حتى يعمل جلب الملف.';
     $('markdownContent').innerHTML = '<p>يمكن تشغيل خادم محلي من مجلد المشروع عبر الأمر <code>python -m http.server</code> ثم فتح العنوان المحلي.</p>';
   }
 }
 
+function buildPlanAccordion() {
+  const content = $('markdownContent');
+  const title = content.querySelector('h1');
+  const headings = [...content.querySelectorAll('h1')].slice(1);
+  if (title) title.classList.add('plan-title');
+  headings.forEach((heading, index) => {
+    const details = document.createElement('details');
+    details.className = 'plan-accordion';
+    if (index === 0) details.open = true;
+    const summary = document.createElement('summary');
+    summary.innerHTML = `<span>${heading.textContent}</span><b>+</b>`;
+    const body = document.createElement('div');
+    body.className = 'accordion-body';
+    heading.parentNode.insertBefore(details, heading);
+    details.append(summary, body);
+    let node = heading.nextSibling;
+    while (node && node !== headings[index + 1]) {
+      const next = node.nextSibling;
+      body.appendChild(node);
+      node = next;
+    }
+    heading.remove();
+  });
+}
+
 document.querySelectorAll('input').forEach((input) => input.addEventListener('input', updateSimulation));
 $('resetSimulation').addEventListener('click', () => { $('capital').value = 100000; $('growthRate').value = 3; $('usTax').value = 30; $('downside').value = 15; ['batchOne', 'batchTwo', 'batchThree'].forEach((id, index) => { $(id).value = index === 0 ? 40 : 30; }); updateSimulation(); });
 $('themeToggle').addEventListener('click', () => document.body.classList.toggle('soft-dark'));
+$('menuToggle').addEventListener('click', () => {
+  const isOpen = $('navLinks').classList.toggle('is-open');
+  $('menuToggle').setAttribute('aria-expanded', String(isOpen));
+});
+document.querySelectorAll('.nav-links a').forEach((link) => link.addEventListener('click', () => {
+  $('navLinks').classList.remove('is-open');
+  $('menuToggle').setAttribute('aria-expanded', 'false');
+}));
+window.addEventListener('scroll', () => $('backToTop').classList.toggle('is-visible', window.scrollY > 500));
+$('backToTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 updateSimulation();
 loadPlan();

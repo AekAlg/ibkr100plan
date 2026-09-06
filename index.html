@@ -18,9 +18,15 @@
         <span class="brand-mark">100K</span>
         <span><strong>خطة الدخل</strong><small>Interactive Brokers</small></span>
       </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#simulator">المحاكاة</a>
+        <a href="#portfolio">المحفظة</a>
+        <a href="#plan">الخطة</a>
+      </div>
       <div class="navbar-actions">
         <button class="button is-small is-light is-outlined" id="themeToggle" type="button" title="تبديل المظهر">◐ <span>المظهر</span></button>
         <a class="button is-small is-primary" href="#simulator">ابدأ المحاكاة</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح قائمة التنقل" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </div>
   </nav>
@@ -29,7 +35,7 @@
     <section class="hero-panel">
       <div class="container is-max-widescreen hero-grid">
         <div class="hero-copy">
-          <p class="eyebrow"><span class="pulse-dot"></span> لوحة قرار شخصية · 06 سبتمبر 2026</p>
+          <p class="eyebrow"><span class="pulse-dot"></span> لوحة قرار شخصية · 3 مارس 2025</p>
           <h1>دخل طويل الأجل،<br><em>بخطة قابلة للاختبار.</em></h1>
           <p class="hero-lead">استعرض منهج استثمار بقيمة <strong>$100,000</strong>، ثم غيّر افتراضاته لترى كيف تتبدل التوزيعات، المخاطر، وخطة الدخول.</p>
           <div class="hero-actions">
@@ -104,10 +110,11 @@
     </section>
 
     <section class="section plan-section" id="plan">
-      <div class="container is-max-widescreen"><div class="section-heading"><div><p class="eyebrow">03 · المرجع التنفيذي</p><h2>الخطة الأصلية</h2></div><span class="section-caption">محمّلة مباشرة من plan.md</span></div><div class="markdown-shell"><div class="markdown-status" id="markdownStatus">جارٍ تحميل الخطة...</div><article class="markdown-content content" id="markdownContent"></article></div></div>
+      <div class="container is-max-widescreen"><div class="section-heading"><div><p class="eyebrow">03 · المرجع التنفيذي</p><h2>الخطة الأصلية</h2></div></div><div class="markdown-shell"><div class="markdown-status" id="markdownStatus">جارٍ تحميل الخطة...</div><article class="markdown-content content" id="markdownContent"></article></div></div>
     </section>
   </main>
 
+  <button class="back-to-top" id="backToTop" type="button" aria-label="العودة إلى الأعلى" title="العودة إلى الأعلى">↑</button>
   <footer class="app-footer"><div class="container is-max-widescreen"><span>خطة الدخل · نموذج تعليمي قابل للتعديل</span><span>لا تمثل هذه الصفحة نصيحة مالية</span></div></footer>
   <script src="https://cdn.jsdelivr.net/npm/marked@15.0.7/marked.min.js"></script>
   <script src="app.js"></script>
